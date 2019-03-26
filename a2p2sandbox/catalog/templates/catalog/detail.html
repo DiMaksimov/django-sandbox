@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %} catalog_item.title {% endblock %}
+{% block content %}
+    {% if catalog_item %}
+    <div class="jumbotron">
+        <h1 class="display-4">{{catalog_item.title}}</h1>
+        <hr class="my-4">
+        <p class="lead">{{catalog_item.description}}</p>
+    </div>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %} Catalog App {% endblock %}
+{% block content %}
+    {% if  catalog_items %}
+        <div class="container">
+            <div class="row">
+            {% for item in catalog_items %}
+                <div class="col-">
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" src="{{ item.item_image.url }}" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">{{item.title}}</h5>
+                            <p class="card-text">{{ item.description|truncatechars:30 }}</p>
+                            <a href="{% url 'catalog:detail' item.id %}" class="btn btn-primary">Show details</a>
+                        </div>
+                    </div>
+                </div>
+                {% if forloop.counter|divisibleby:"3" and not forloop.last %}
+            </div><div class="row">
+                {% endif %}
+            {% empty %}
+                <li>Sorry, no items in this list.</li>
+            {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
